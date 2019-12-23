@@ -14,6 +14,7 @@
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://hungry-modem.glitch.me/">
     <style amp-boilerplate>
@@ -144,7 +145,7 @@
             <h2 class="main-heading">Subscribe to our Newsletter</h2>
             <div class="subscribe-card-container">
                 <div class="subscribe-card">
-                    <form method="post" action-xhr="/submit-form" target="_top" class="main-form">
+                    <form method="post" class="main-form" action-xhr="/submit-form" target="_top">
                         <div class="input">
                             <input type="text" name="name" id="form-name" required>
                             <label for="form-name">Name:</label>
@@ -154,6 +155,20 @@
                             <label for="form-email">Email:</label>
                         </div>
                         <input type="submit" value="Subscribe" class="btn">
+                        <div submit-success>
+                            <template type="amp-mustache">
+                                <p class="form-submit-response">
+                                    Success! Thanks {{name}} for subscribing!
+                                </p>
+                            </template>
+                        </div>
+                        <div submit-error>
+                            <template type="amp-mustache">
+                                <p class="form-submit-response">
+                                    Oops! Sorry, there was an error.
+                                </p>
+                            </template>
+                        </div>
                     </form>
                 </div>
             </div>
