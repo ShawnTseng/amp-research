@@ -13,6 +13,7 @@
         src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://hungry-modem.glitch.me/">
     <style amp-boilerplate>
@@ -140,6 +141,22 @@
             <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746"
                 layout="responsive" width="640" height="480"></amp-img>
             <amp-youtube data-videoid="BlpMQ7fMCzA" layout="responsive" width="480" height="270"></amp-youtube>
+            <h2 class="main-heading">Subscribe to our Newsletter</h2>
+            <div class="subscribe-card-container">
+                <div class="subscribe-card">
+                    <form method="post" action-xhr="/submit-form" target="_top" class="main-form">
+                        <div class="input">
+                            <input type="text" name="name" id="form-name" required>
+                            <label for="form-name">Name:</label>
+                        </div>
+                        <div class="input">
+                            <input type="email" name="email" id="form-email" required>
+                            <label for="form-email">Email:</label>
+                        </div>
+                        <input type="submit" value="Subscribe" class="btn">
+                    </form>
+                </div>
+            </div>
             <div class="below-hero">
                 <h2 class="main-heading">What we're about</h2>
                 <p class="main-text">
