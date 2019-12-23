@@ -11,6 +11,7 @@
     <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-social-share"
         src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://hungry-modem.glitch.me/">
     <style amp-boilerplate>
@@ -87,8 +88,28 @@
 
 <body>
     <header class="headerbar">
+        <div class="navbar-trigger" role="button" tabindex="0" on="tap:sidebar1.toggle">☰</div>
         <h2>Chico's Cheese Bicycles</h2>
     </header>
+    <amp-sidebar class="sidebar" id="sidebar1" layout="nodisplay" side="left">
+        <div class="navbar-trigger" role="button" tabindex="0" on="tap:sidebar1.toggle">X</div>
+        <nav class="nav">
+            <ul class="label">
+                <li class="nav-item">
+                    <a href="#">Our Story</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Our Bikes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Latest Models</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </amp-sidebar>
     <main>
         <div class="main-content">
             <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746"
