@@ -574,6 +574,78 @@
         </nav>
     </amp-sidebar>
     <main>
+        <amp-state id="productData">
+            <script type="application/json">
+            {
+                "basePrice": 14,
+                "upcharges": {
+                    "fit": {
+                        "Men": 0,
+                        "Women": 3
+                    },
+                    "size": {
+                        "Small": 0,
+                        "Medium": 2,
+                        "Large": 5
+                    },
+                    "color": {
+                        "Red": 0,
+                        "Blue": 1,
+                        "Green": 0
+                    }
+                },
+                "images": {
+                    "Red": "https://cdn.glitch.com/f87df7df-18be-4e6e-8b0e-1145de279989%2Fredtshirt.jpg?v=1542275948053",
+                    "Blue": "https://cdn.glitch.com/f87df7df-18be-4e6e-8b0e-1145de279989%2FBlue_Tshirt.jpg?v=1542275946455",
+                    "Green": "https://cdn.glitch.com/f87df7df-18be-4e6e-8b0e-1145de279989%2Fgreentshirt.png?v=1542275950591"
+                }
+            }
+            </script>
+        </amp-state>
+        <amp-state id="optionsData">
+            <script type="application/json">
+           {
+               "fit": "Men",
+               "size": "Small",
+               "color": "Red"
+           }
+           </script>
+        </amp-state>
+        <h2>Tina's T-Shirts</h2>
+        <div class="filter-sort-selectors">
+            <p>Product Fit:</p>
+            <select class="product-selector" on="change:AMP.setState({optionsData: { fit: event.value }})">
+                <option value="Men">Men's</option>
+                <option value="Women">Women's</option>
+            </select>
+            <p>Product Size:</p>
+            <select class="product-selector" on="change:AMP.setState({optionsData: { size: event.value }})">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+            <p>Product Color:</p>
+            <select class="product-selector" on="change:AMP.setState({optionsData: { color: event.value }})">
+                <option value="Red">Red</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+            </select>
+        </div>
+        <div class="product">
+            <amp-img src="https://cdn.glitch.com/f87df7df-18be-4e6e-8b0e-1145de279989%2Fredtshirt.jpg?1542275948053"
+                [src]="productData.images[optionsData.color]" layout="responsive" width="350" height="350"></amp-img>
+            <h2>T-Shirt</h2>
+            <p [text]="'Fit: ' + optionsData.fit + ' - Size: ' + optionsData.size + ' - Color: ' + optionsData.color">
+                Fit: Men - Size: Small - Color: Red
+            </p>
+            <p class="price">
+                $<span [text]="productData.basePrice +
+                                 productData.upcharges.fit[optionsData.fit] +
+                                 productData.upcharges.size[optionsData.size] +
+                                 productData.upcharges.color[optionsData.color]"> 14</span>.00
+            </p>
+        </div>
+
         <div class="main-content">
             <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746"
                 layout="responsive" width="640" height="480"></amp-img>
