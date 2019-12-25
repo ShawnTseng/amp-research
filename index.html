@@ -18,6 +18,7 @@
     <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
     <script async custom-element="amp-lightbox-gallery"
         src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://hungry-modem.glitch.me/">
     <style amp-boilerplate>
@@ -610,8 +611,16 @@
             <div class="below-hero">
                 <h2 class="main-heading">What we're about</h2>
                 <p class="main-text">
-                    <amp-carousel on="slideChange:ampSelector.toggle(index=event.index)" layout="responsive" width="412"
-                        height="309" type="slides" loop id="carousel" lightbox>
+                    <amp-state id="carousel">
+                        <script type="application/json">
+                            {
+                                "selectedSlide": 0
+                            }
+                        </script>
+                    </amp-state>
+                    <amp-carousel on="slideChange:AMP.setState({carousel: {selectedSlide:event.index}})"
+                        [slide]="carousel.selectedSlide" lightbox id="imageSlides" layout="responsive" width="412"
+                        height="309" type="slides" loop>
                         <amp-img
                             src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser.jpg?1540228205366"
                             width="412" height="309" layout="responsive"></amp-img>
@@ -622,22 +631,24 @@
                             src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fmouse.jpg?1540228223963"
                             width="412" height="309" layout="responsive"></amp-img>
                     </amp-carousel>
-                    <amp-selector layout="container" name="single_image_select" id="ampSelector">
-                        <amp-carousel class="thumbnail-carousel" layout="fixed-height" width="auto" height="78">
+                    <amp-selector id="ampSelector" [selected]="carousel.selectedSlide"
+                        on="select:AMP.setState({carousel: {selectedSlide:event.targetOption}})">
+                        <amp-carousel layout="fixed-height" height="78" class="thumbnail-carousel">
                             <amp-img
                                 src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser-thumb.jpg?1540228250623"
-                                option="0" selected on="tap:carousel.goToSlide(index=0)" tabindex="1" role="button"
-                                width="96" height="72" layout="fixed"></amp-img>
+                                option="0" selected role="button" tabindex="1" width="96" height="72" layout="fixed">
+                            </amp-img>
                             <amp-img
                                 src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheese-thumb.jpg?1540228249992"
-                                option="1" on="tap:carousel.goToSlide(index=1)" tabindex="1" role="button" width="96"
-                                height="72" layout="fixed"></amp-img>
+                                option="1" role="button" tabindex="1" width="96" height="72" layout="fixed"></amp-img>
                             <amp-img
                                 src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fmouse-thumb.jpg?1540228249062"
-                                option="2" on="tap:carousel.goToSlide(index=2)" tabindex="1" role="button" width="96"
-                                height="72" layout="fixed"></amp-img>
+                                option="2" role="button" tabindex="1" width="96" height="72" layout="fixed"></amp-img>
                         </amp-carousel>
                     </amp-selector>
+                    <p [text]="'Slide ' + (carousel.selectedSlide + 1) + ' of 3'">
+                        Slide 1 of 3
+                    </p>
                 </p>
             </div>
         </div>
